@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -34,32 +35,35 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-            Scaffold(
-                bottomBar = {
-                    NavigationBar(
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        val navBackStackEntry by navController.currentBackStackEntryAsState()
-                        val currentRoute = navBackStackEntry?.destination?.route
-                        Screen.values().forEach { screen ->
-                            NavigationBarItem(
-                                selected = currentRoute == screen.name,
-                                onClick = {
-                                    navController.navigate(screen.name)
-                                },
-                                icon = {
-                                    Icon(
-                                        imageVector = if (screen.name == Screen.Home.name) Icons.Filled.Home else Icons.Filled.List,
-                                        contentDescription = null
-                                    )
-                                })
+            ComposeAppTheme {
+                Scaffold(
+                    bottomBar = {
+                        NavigationBar(
+                            modifier = Modifier.fillMaxWidth(),
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                        ) {
+                            val navBackStackEntry by navController.currentBackStackEntryAsState()
+                            val currentRoute = navBackStackEntry?.destination?.route
+                            Screen.values().forEach { screen ->
+                                NavigationBarItem(
+                                    selected = currentRoute == screen.name,
+                                    onClick = {
+                                        navController.navigate(screen.name)
+                                    },
+                                    icon = {
+                                        Icon(
+                                            imageVector = if (screen.name == Screen.Home.name) Icons.Filled.Home else Icons.Filled.List,
+                                            contentDescription = null
+                                        )
+                                    })
+                            }
                         }
                     }
-                }
-            ) {
-                NavHost(navController, startDestination = Screen.Home.name) {
-                    composable(Screen.Home.name) { HomeScreen() }
-                    composable(Screen.Library.name) { LibraryScreen() }
+                ) {
+                    NavHost(navController, startDestination = Screen.Home.name) {
+                        composable(Screen.Home.name) { HomeScreen() }
+                        composable(Screen.Library.name) { LibraryScreen() }
+                    }
                 }
             }
         }
