@@ -41,15 +41,12 @@ import com.example.studycompose.ui.theme.ComposeAppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun Greetings(
+fun LibraryScreen(
     modifier: Modifier = Modifier,
     names: List<String> = List(1000) { "$it" }
 ) {
-    Scaffold (
+    Scaffold(
         modifier = modifier,
-        bottomBar = {
-            BottomNavigationBar()
-        }
     ) {
         LazyColumn(
             modifier = Modifier.padding(vertical = 4.dp)
@@ -158,7 +155,7 @@ fun OnboardingScreen(
 @Composable
 private fun DefaultPreview() {
     ComposeAppTheme {
-        Greetings()
+        LibraryScreen()
     }
 }
 
@@ -174,6 +171,6 @@ private fun OnboardingPreview() {
 @Composable
 private fun GreetingsPreview() {
     ComposeAppTheme {
-        Greetings()
+        LibraryScreen()
     }
 }
