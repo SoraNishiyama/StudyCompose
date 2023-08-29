@@ -4,4 +4,7 @@
     <string name="show_less">Show less</string>
     <string name="show_more_text">Composem ipsum color sit lazy, </string>
     <string name="show_more_text2">padding theme elit, sed do bouncy. </string>
+    <string name="bottom_navigation_home">Home</string>
+    <string name="bottom_navigation_library">Library</string>
+    <string name="title_activity_library">LibraryActivity</string>
 </resources>

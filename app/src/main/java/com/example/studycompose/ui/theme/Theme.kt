@@ -17,7 +17,8 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    surface = Color.Black,
+    surface = Blue,
+    surfaceVariant = Blue2,
     onSurface = Navy,
     primary = Navy,
     onPrimary = Chartreuse,
@@ -25,6 +26,7 @@ private val DarkColorScheme = darkColorScheme(
 
 private val LightColorScheme = lightColorScheme(
     surface = Blue,
+    surfaceVariant = Ash,
     onSurface = Color.White,
     primary = LightBlue,
     onPrimary = Navy,
@@ -67,6 +69,20 @@ fun StudyComposeTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
+        typography = Typography,
+        content = content
+    )
+}
+
+@Composable
+fun ComposeAppTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+    val colors = if (darkTheme) DarkColorScheme else LightColorScheme
+
+    MaterialTheme(
+        colorScheme = colors,
         typography = Typography,
         content = content
     )
