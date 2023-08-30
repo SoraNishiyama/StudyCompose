@@ -7,4 +7,6 @@
     <string name="bottom_navigation_home">Home</string>
     <string name="bottom_navigation_library">Library</string>
     <string name="title_activity_library">LibraryActivity</string>
+    <string name="home_round_icon">Round Icon</string>
+    <string name="home_card">Card with Image</string>
 </resources>
