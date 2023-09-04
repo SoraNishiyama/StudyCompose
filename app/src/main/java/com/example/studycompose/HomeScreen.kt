@@ -34,11 +34,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    viewModel: MainViewModel = viewModel()
+) {
     val names: List<String> = List(100) { "$it" }
     Scaffold(
         modifier = modifier.padding(8.dp),
@@ -140,11 +144,11 @@ private fun CardWithImage(
     }
 }
 
-@Preview
-@Composable
-private fun HomeScreenPreview() {
-    HomeScreen()
-}
+//@Preview
+//@Composable
+//private fun HomeScreenPreview() {
+//    HomeScreen(viewModel = viewModel())
+//}
 
 @Preview
 @Composable

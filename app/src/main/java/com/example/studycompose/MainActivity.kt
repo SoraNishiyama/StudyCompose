@@ -21,12 +21,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.studycompose.ui.theme.ComposeAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -71,7 +74,10 @@ class MainActivity : ComponentActivity() {
                     }
                 ) {
                     NavHost(navController, startDestination = Screen.Home.name) {
-                        composable(Screen.Home.name) { HomeScreen() }
+                        composable(Screen.Home.name) {
+                            val viewModel = hiltViewModel<MainViewModel>()
+                            HomeScreen(viewModel = viewModel)
+                        }
                         composable(Screen.Library.name) { LibraryScreen() }
                     }
                 }
