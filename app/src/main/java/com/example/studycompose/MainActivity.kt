@@ -36,59 +36,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val navController = rememberNavController()
             ComposeAppTheme {
-                Scaffold(
-                    bottomBar = {
-                        NavigationBar(
-                            modifier = Modifier.fillMaxWidth(),
-                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                        ) {
-                            val navBackStackEntry by navController.currentBackStackEntryAsState()
-                            val currentRoute = navBackStackEntry?.destination?.route
-                            Screen.values().forEach { screen ->
-                                NavigationBarItem(
-                                    selected = currentRoute == screen.name,
-                                    colors = NavigationBarItemDefaults.colors(
-                                        selectedIconColor = MaterialTheme.colorScheme.onPrimary,
-                                        selectedTextColor = MaterialTheme.colorScheme.onPrimary,
-                                    ),
-                                    onClick = {
-                                        navController.navigate(screen.name)
-                                    },
-                                    icon = {
-                                        Icon(
-                                            imageVector = if (screen.name == Screen.Home.name) Icons.Filled.Home else Icons.Filled.List,
-                                            contentDescription = null
-                                        )
-                                    },
-                                    label = {
-                                        Text(
-                                            text = screen.name,
-                                            style = MaterialTheme.typography.bodyMedium,
-                                        )
-                                    }
-                                )
-                            }
-                        }
-                    }
-                ) {
-                    NavHost(navController, startDestination = Screen.Home.name) {
-                        composable(Screen.Home.name) {
-                            val viewModel = hiltViewModel<MainViewModel>()
-                            HomeScreen(viewModel = viewModel)
-                        }
-                        composable(Screen.Library.name) { LibraryScreen() }
-                    }
-                }
+                CustomNavHost()
             }
         }
     }
-}
-
-enum class Screen() {
-    Home,
-    Library
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

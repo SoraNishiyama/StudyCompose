@@ -36,17 +36,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: MainViewModel = viewModel()
+    viewModel: MainViewModel = viewModel(),
+    navHostController: NavHostController = rememberNavController()
 ) {
     val names: List<String> = List(100) { "$it" }
     Scaffold(
-        modifier = modifier.padding(8.dp),
+        modifier = modifier,
+        bottomBar = {
+            CustomBottomNavigation(navController = navHostController)
+        },
         floatingActionButton = {
             RoundFab(
                 modifier = modifier.padding(),
@@ -101,7 +107,7 @@ private fun RoundIcon(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
-            painter = painterResource(id = R.drawable.sample_flower),
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -135,7 +141,7 @@ private fun CardWithImage(
 
         ) {
             Image(
-                painter = painterResource(id = R.drawable.sample_car),
+                painter = painterResource(id = R.drawable.ic_launcher_foreground),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
