@@ -17,13 +17,14 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -46,10 +47,16 @@ fun HomeScreen(
     val names: List<String> = List(100) { "$it" }
     Scaffold(
         modifier = modifier.padding(8.dp),
+        floatingActionButton = {
+            RoundFab(
+                modifier = modifier.padding(),
+                onClick = { }
+            )
+        }
     ) {
-        Column (
+        Column(
             modifier = modifier
-        ){
+        ) {
             Text(
                 text = stringResource(id = R.string.home_round_icon),
                 style = MaterialTheme.typography.titleMedium,
@@ -117,7 +124,7 @@ private fun CardWithImage(
         modifier = modifier.height(80.dp),
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(
-        containerColor = MaterialTheme.colorScheme.primary
+            containerColor = MaterialTheme.colorScheme.primary
         )
     ) {
         Row(
@@ -128,7 +135,7 @@ private fun CardWithImage(
 
         ) {
             Image(
-                painter = painterResource(id =R.drawable.sample_car),
+                painter = painterResource(id = R.drawable.sample_car),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -144,21 +151,44 @@ private fun CardWithImage(
     }
 }
 
-//@Preview
-//@Composable
-//private fun HomeScreenPreview() {
-//    HomeScreen(viewModel = viewModel())
-//}
+@Composable
+private fun RoundFab(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    FloatingActionButton(
+        onClick = onClick,
+        modifier = modifier
+    ) {
+        Icon(
+            imageVector = Icons.Default.Add,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSecondary
+        )
+    }
+}
 
 @Preview
 @Composable
-fun RoundIconPreview() {
+private fun HomeScreenPreview() {
+    HomeScreen(viewModel())
+}
+
+@Preview
+@Composable
+private fun a() {
+
+}
+
+@Preview
+@Composable
+private fun RoundIconPreview() {
     RoundIcon(name = "Test")
 }
 
 @Preview
 @Composable
-fun CardPreview() {
+private fun CardPreview() {
     CardWithImage(name = "Test")
 }
 
