@@ -49,7 +49,7 @@ fun HomeScreen(
 ) {
     val names: List<String> = List(100) { "$it" }
     Scaffold(
-        modifier = modifier.padding(8.dp),
+        modifier = modifier,
         bottomBar = {
             CustomBottomNavigation(navController = navHostController)
         },
@@ -107,7 +107,7 @@ private fun RoundIcon(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
-            painter = painterResource(id = R.drawable.sample_flower),
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -141,7 +141,7 @@ private fun CardWithImage(
 
         ) {
             Image(
-                painter = painterResource(id = R.drawable.sample_car),
+                painter = painterResource(id = R.drawable.ic_launcher_foreground),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier

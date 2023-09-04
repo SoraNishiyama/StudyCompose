@@ -50,6 +50,9 @@ fun LibraryScreen(
 ) {
     Scaffold(
         modifier = modifier,
+        bottomBar = {
+            CustomBottomNavigation(navController = navHostController)
+        },
     ) {
         LazyColumn(
             modifier = Modifier.padding(vertical = 4.dp)
