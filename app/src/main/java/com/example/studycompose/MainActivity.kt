@@ -86,11 +86,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-enum class Screen() {
-    Home,
-    Library
-}
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
