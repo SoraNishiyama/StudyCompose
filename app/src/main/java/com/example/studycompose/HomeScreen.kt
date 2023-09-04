@@ -36,17 +36,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: MainViewModel = viewModel()
+    viewModel: MainViewModel = viewModel(),
+    navHostController: NavHostController = rememberNavController()
 ) {
     val names: List<String> = List(100) { "$it" }
     Scaffold(
         modifier = modifier.padding(8.dp),
+        bottomBar = {
+            CustomBottomNavigation(navController = navHostController)
+        },
         floatingActionButton = {
             RoundFab(
                 modifier = modifier.padding(),
